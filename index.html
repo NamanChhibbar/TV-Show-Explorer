@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,8 @@
   <title>TV Show Explorer</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
 
+<body>
   <!-- ============ SHARED CHROME (on both views) ============ -->
   <header class="site-header">
     <h1 class="site-title">
@@ -21,7 +22,6 @@
   <hr class="header-rule">
 
   <main>
-
     <!-- Back button sits to the LEFT of the search bar; shown only on the detail view -->
     <section class="search-section" aria-label="Search shows">
       <div class="search-bar">
@@ -54,10 +54,9 @@
         <div id="error" class="status error" role="alert" hidden></div>
         <div id="empty" class="status empty" hidden>No shows matched your search.</div>
       </section>
-
-      <!-- Results -->
-      <section class="results-section" aria-label="Search results">
-        <p id="results-count" class="results-count" hidden></p>
+      <!-- Results: container stays hidden until a search returns shows -->
+      <section id="results-container" class="results-section" aria-label="Search results" hidden>
+        <p id="results-count" class="results-count"></p>
         <ul id="results-list" class="results-list"></ul>
       </section>
     </div>
@@ -69,7 +68,6 @@
         <span>Loading show&hellip;</span>
       </div>
       <div id="detail-error" class="status error" role="alert" hidden></div>
-
       <!-- Populated by js/app.js -->
       <article id="detail-body" class="detail-body"></article>
     </div>
@@ -81,11 +79,27 @@
       <img class="show-poster" src="" alt="" loading="lazy">
       <div class="show-info">
         <h3 class="show-name"></h3>
-        <p class="show-meta"></p>
-        <p class="show-rating"></p>
-        <button type="button" class="details-button">View details</button>
+        <p class="show-rating">
+          <span class="star" aria-hidden="true">&#x2605;</span>
+          <span class="rating-value"></span>
+        </p>
+        <!-- Genre bubbles, one <li> per genre (see #genre-template) -->
+        <ul class="show-genres"></ul>
+        <div class="show-footer">
+          <p class="show-meta">
+            <span class="show-network"></span>
+            <span class="meta-dot" aria-hidden="true">&middot;</span>
+            <span class="show-date"></span>
+          </p>
+          <span class="show-status"></span>
+        </div>
       </div>
     </li>
+  </template>
+
+  <!-- Template for one genre bubble inside .show-genres -->
+  <template id="genre-template">
+    <li class="genre"></li>
   </template>
 
   <script src="js/app.js" defer></script>
