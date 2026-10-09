@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Search and explore TV shows using the TVMaze API.">
+  <title>TV Show Explorer</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <h1 class="site-title">
+      <span>&#x1F3AC;</span>
+      <span>TV Show Explorer</span>
+    </h1>
+    <p class="tagline">Discover shows from every network, powered by <a href="https://www.tvmaze.com/api" target="_blank" rel="noopener noreferrer">TVMaze</a></p>
+  </header>
+
+  <main>
+    <!-- Search -->
+    <section class="search-section" aria-labelledby="search-heading">
+      <form id="search-form" class="search-form" role="search" novalidate>
+        <input
+          type="search"
+          id="search-input"
+          name="q"
+          class="search-input"
+          placeholder="Search for a show, e.g. Breaking Bad, Girls, The Office"
+          autocomplete="off"
+          required>
+        <button type="submit" id="search-button" class="search-button">Search</button>
+      </form>
+      <p id="form-error" class="form-error" role="alert" hidden></p>
+    </section>
+
+    <!-- Status messages: loading / error / empty -->
+    <section class="status-section" aria-live="polite">
+      <div id="loading" class="status loading" hidden>
+        <span class="spinner" aria-hidden="true"></span>
+        <span>Loading shows&hellip;</span>
+      </div>
+      <div id="error" class="status error" role="alert" hidden></div>
+      <div id="empty" class="status empty" hidden>No shows matched your search.</div>
+    </section>
+
+    <!-- Results -->
+    <section class="results-section" aria-labelledby="results-heading">
+      <p id="results-count" class="results-count" hidden></p>
+      <ul id="results-list" class="results-list"></ul>
+    </section>
+  </main>
+
+  <!-- Show details modal -->
+  <div id="details-overlay" class="overlay" hidden>
+    <div
+      id="details-modal"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="details-title">
+      <button type="button" id="details-close" class="modal-close" aria-label="Close details">&times;</button>
+      <h2 id="details-title">Show details</h2>
+      <div id="details-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Template for a single result card -->
+  <template id="show-card-template">
+    <li class="show-card">
+      <img class="show-poster" src="" alt="" loading="lazy">
+      <div class="show-info">
+        <h3 class="show-name"></h3>
+        <p class="show-meta"></p>
+        <p class="show-rating"></p>
+        <button type="button" class="details-button">View details</button>
+      </div>
+    </li>
+  </template>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
