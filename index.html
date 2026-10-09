@@ -20,28 +20,29 @@
 
   <hr class="header-rule">
 
-  <!-- Back button sits to the LEFT of the search bar; shown only on the detail view -->
-  <section class="search-section" aria-label="Search shows">
-    <div class="search-bar">
-      <button type="button" id="back-button" class="back-button" hidden>
-        <span aria-hidden="true">&larr;</span> Back
-      </button>
-      <form id="search-form" class="search-form" role="search" novalidate>
-        <input
-          type="search"
-          id="search-input"
-          name="q"
-          class="search-input"
-          placeholder="Search for a show, e.g. Breaking Bad, Girls, The Office"
-          autocomplete="off"
-          required>
-        <button type="submit" id="search-button" class="search-button">Search</button>
-      </form>
-    </div>
-    <p id="form-error" class="form-error" role="alert" hidden></p>
-  </section>
-
   <main>
+
+    <!-- Back button sits to the LEFT of the search bar; shown only on the detail view -->
+    <section class="search-section" aria-label="Search shows">
+      <div class="search-bar">
+        <button type="button" id="back-button" class="back-button" hidden>
+          <span aria-hidden="true">&larr;</span> Back
+        </button>
+        <form id="search-form" class="search-form" role="search" novalidate>
+          <input
+            type="search"
+            id="search-input"
+            name="q"
+            class="search-input"
+            placeholder="Search for a show, e.g. Breaking Bad, Girls, The Office"
+            autocomplete="off"
+            required>
+          <button type="submit" id="search-button" class="search-button">Search</button>
+        </form>
+      </div>
+      <p id="form-error" class="form-error" role="alert" hidden></p>
+    </section>
+
     <!-- ============ HOME VIEW (search results) ============ -->
     <div id="home-view" class="view">
       <!-- Status messages: loading / error / empty -->
