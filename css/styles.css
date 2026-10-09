@@ -7,7 +7,7 @@
 :root {
   --navy-900: #061329;   /* page background            */
   --navy-800: #0a1c3a;   /* header / footer background */
-  --surface:  #13294f;   /* cards, modal               */
+  --surface:  #13294f;   /* cards, panels              */
   --surface-edge: #1f3a68;
 
   --white:    #ffffff;
@@ -93,18 +93,6 @@ img {
   letter-spacing: -0.5px;
 }
 
-.title-icon {
-  width: 1.1em;
-  height: 1.1em;
-  flex-shrink: 0;
-  fill: var(--sky);                   /* film-strip body */
-}
-
-.title-icon .icon-perf,              /* sprocket holes  */
-.title-icon .icon-screen {           /* centre panel    */
-  fill: var(--navy-900);
-}
-
 .tagline {
   margin: 10px 0 0;
   color: var(--grey);
@@ -122,13 +110,30 @@ img {
   color: var(--sky);
 }
 
+/* ---------- Divider under the header ---------- */
+.header-rule {
+  width: 95%;
+  margin: 0 auto 28px;
+  border: none;
+  border-top: 1px solid var(--grey);
+  opacity: 0.5;
+}
+
 /* ---------- Search ---------- */
 .search-section {
-  max-width: 640px;
+  max-width: 760px;
   margin: 0 auto 28px;
 }
 
+/* Back button (left) + search form (right), on one row */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .search-form {
+  flex: 1 1 auto;                     /* form takes the leftover width */
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -317,61 +322,52 @@ img {
   color: #000000;
 }
 
-/* ---------- Details modal ---------- */
-.overlay {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background-color: rgba(3, 9, 20, 0.75);
+/* ---------- Detail view ---------- */
+/* Both views are siblings in <body>; `hidden` on one leaves the other alone. */
+.view {
+  max-width: var(--content-width);
+  margin: 0 auto;
 }
 
-.modal {
-  position: relative;
-  width: min(640px, 100%);
-  max-height: 85vh;
-  overflow-y: auto;
-  padding: 28px;
+.back-button {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  padding: 13px 18px;                 /* match the input's height */
+  line-height: 1.2;
   border: 1px solid var(--surface-edge);
-  border-radius: var(--radius-lg);
-  background-color: var(--surface);
+  border-radius: var(--radius-md);    /* match the input + Search button */
+  background-color: transparent;
+  color: var(--grey);
+  font-family: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: border-color 0.18s ease, color 0.18s ease;
+}
+
+.back-button:hover {
+  border-color: var(--sky);
+  color: var(--sky);
+}
+
+.back-button:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.detail-body {
   text-align: left;
 }
 
-.modal-close {
-  position: absolute;
-  top: 12px;
-  right: 14px;
-  width: 34px;
-  height: 34px;
-  border: none;
-  border-radius: 50%;
-  background-color: transparent;
-  color: var(--grey);
-  font-size: 1.6rem;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.modal-close:hover {
-  background-color: var(--navy-800);
-  color: var(--white);
-}
-
-.modal-body {
-  color: var(--grey);
-}
-
-.modal-body a {
-  color: var(--sky);
+.detail-body:empty {
+  display: none;
 }
 
 /* ---------- Small screens ---------- */
 @media (max-width: 520px) {
   .site-header  { padding: 32px 0 24px; }
   .site-title   { font-size: 1.9rem; }
+  .search-bar   { flex-direction: column; align-items: stretch; }
   .search-form  { flex-direction: column; }
+  .header-rule  { margin-bottom: 20px; }
   .results-list { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
 }

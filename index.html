@@ -9,6 +9,7 @@
 </head>
 <body>
 
+  <!-- ============ SHARED CHROME (on both views) ============ -->
   <header class="site-header">
     <h1 class="site-title">
       <span>&#x1F3AC;</span>
@@ -17,9 +18,14 @@
     <p class="tagline">Discover shows from every network, powered by <a href="https://www.tvmaze.com/api" target="_blank" rel="noopener noreferrer">TVMaze</a></p>
   </header>
 
-  <main>
-    <!-- Search -->
-    <section class="search-section" aria-labelledby="search-heading">
+  <hr class="header-rule">
+
+  <!-- Back button sits to the LEFT of the search bar; shown only on the detail view -->
+  <section class="search-section" aria-label="Search shows">
+    <div class="search-bar">
+      <button type="button" id="back-button" class="back-button" hidden>
+        <span aria-hidden="true">&larr;</span> Back
+      </button>
       <form id="search-form" class="search-form" role="search" novalidate>
         <input
           type="search"
@@ -31,39 +37,42 @@
           required>
         <button type="submit" id="search-button" class="search-button">Search</button>
       </form>
-      <p id="form-error" class="form-error" role="alert" hidden></p>
-    </section>
-
-    <!-- Status messages: loading / error / empty -->
-    <section class="status-section" aria-live="polite">
-      <div id="loading" class="status loading" hidden>
-        <span class="spinner" aria-hidden="true"></span>
-        <span>Loading shows&hellip;</span>
-      </div>
-      <div id="error" class="status error" role="alert" hidden></div>
-      <div id="empty" class="status empty" hidden>No shows matched your search.</div>
-    </section>
-
-    <!-- Results -->
-    <section class="results-section" aria-labelledby="results-heading">
-      <p id="results-count" class="results-count" hidden></p>
-      <ul id="results-list" class="results-list"></ul>
-    </section>
-  </main>
-
-  <!-- Show details modal -->
-  <div id="details-overlay" class="overlay" hidden>
-    <div
-      id="details-modal"
-      class="modal"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="details-title">
-      <button type="button" id="details-close" class="modal-close" aria-label="Close details">&times;</button>
-      <h2 id="details-title">Show details</h2>
-      <div id="details-body" class="modal-body"></div>
     </div>
-  </div>
+    <p id="form-error" class="form-error" role="alert" hidden></p>
+  </section>
+
+  <main>
+    <!-- ============ HOME VIEW (search results) ============ -->
+    <div id="home-view" class="view">
+      <!-- Status messages: loading / error / empty -->
+      <section class="status-section" aria-live="polite">
+        <div id="loading" class="status loading" hidden>
+          <span class="spinner" aria-hidden="true"></span>
+          <span>Loading shows&hellip;</span>
+        </div>
+        <div id="error" class="status error" role="alert" hidden></div>
+        <div id="empty" class="status empty" hidden>No shows matched your search.</div>
+      </section>
+
+      <!-- Results -->
+      <section class="results-section" aria-label="Search results">
+        <p id="results-count" class="results-count" hidden></p>
+        <ul id="results-list" class="results-list"></ul>
+      </section>
+    </div>
+
+    <!-- ============ DETAIL VIEW (one show, replaces the home view) ============ -->
+    <div id="detail-view" class="view" hidden>
+      <div id="detail-loading" class="status loading" hidden>
+        <span class="spinner" aria-hidden="true"></span>
+        <span>Loading show&hellip;</span>
+      </div>
+      <div id="detail-error" class="status error" role="alert" hidden></div>
+
+      <!-- Populated by js/app.js -->
+      <article id="detail-body" class="detail-body"></article>
+    </div>
+  </main>
 
   <!-- Template for a single result card -->
   <template id="show-card-template">
