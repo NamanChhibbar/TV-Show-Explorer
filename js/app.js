@@ -62,14 +62,12 @@ let activeSearch = null;
 function showHomeView() {
   elements.homeView.hidden = false;
   elements.detailView.hidden = true;
-  elements.backButton.hidden = true;
 }
 
 /** Show the single-show detail view and hide the home view. */
 function showDetailView() {
   elements.homeView.hidden = true;
   elements.detailView.hidden = false;
-  elements.backButton.hidden = false;
 }
 
 /* ---------- Status helpers ---------- */

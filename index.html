@@ -25,9 +25,6 @@
     <!-- Back button sits to the LEFT of the search bar; shown only on the detail view -->
     <section class="search-section" aria-label="Search shows">
       <div class="search-bar">
-        <button type="button" id="back-button" class="back-button" hidden>
-          <span aria-hidden="true">&larr;</span> Back
-        </button>
         <form id="search-form" class="search-form" role="search" novalidate>
           <input
             type="search"
@@ -63,6 +60,11 @@
 
     <!-- ============ DETAIL VIEW (one show, replaces the home view) ============ -->
     <div id="detail-view" class="view" hidden>
+      <div align="start">
+        <button type="button" id="back-button" class="back-button">
+          <span aria-hidden="true">&larr;</span> Back
+        </button>
+      </div>
       <div id="detail-loading" class="status loading" hidden>
         <span class="spinner" aria-hidden="true"></span>
         <span>Loading show&hellip;</span>
