@@ -201,7 +201,7 @@ function buildShowCard(show) {
   // Status bubble: green while running, grey once ended
   const statusEl = fragment.querySelector('.show-status');
   const isRunning = show.status === 'Running';
-  statusEl.textContent = show.status || 'Unknown';
+  statusEl.textContent = show.status?.toUpperCase() || 'UNKNOWN';
   statusEl.classList.add(isRunning ? 'running' : 'ended');
 
   return fragment;

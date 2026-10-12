@@ -17,8 +17,19 @@
   --sky:      #87ceeb;   /* search button              */
   --sky-dark: #63b8dd;   /* hover state                */
   --blue:     #3d8bfd;   /* focus highlight            */
+  --green:    #2ecc71;   /* "Running" status           */
 
   --danger:   #ff7a7a;
+
+  /* Bare RGB channels, so the bubbles below can tint with rgba() */
+  --sky-rgb:      135, 206, 235;
+  --green-rgb:     46, 204, 113;
+  --grey-dim-rgb: 111, 130, 160;
+
+  /* Shared glossy-bubble recipe: dark tinted fill, bright text */
+  --bubble-fill:  0.12;   /* tint strength over the card surface */
+  --bubble-edge:  0.38;   /* rim brightness                       */
+  --bubble-gloss: 0.06;   /* top highlight; higher = less contrast */
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -325,11 +336,24 @@ img {
   list-style: none;
 }
 
+/* Bubbles are a dark tint of their own colour, with the text in that
+   colour at full strength. The white-to-transparent gradient on top is
+   what gives them the glossy, slightly-lit look. */
+.genre,
+.show-status {
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, var(--bubble-gloss)),
+    rgba(255, 255, 255, 0)
+  );
+}
+
 .genre {
   padding: 3px 11px;
+  border: 1px solid rgba(var(--sky-rgb), var(--bubble-edge));
   border-radius: 999px;                    /* elliptical bubble */
-  background-color: var(--sky);
-  color: #000000;
+  background-color: rgba(var(--sky-rgb), var(--bubble-fill));
+  color: var(--sky);
   font-size: 0.75rem;
   font-weight: 600;
   white-space: nowrap;
@@ -358,6 +382,7 @@ img {
 .show-status {
   flex-shrink: 0;
   padding: 3px 11px;
+  border: 1px solid transparent;
   border-radius: 999px;
   font-size: 0.72rem;
   font-weight: 600;
@@ -365,13 +390,15 @@ img {
 }
 
 .show-status.running {
-  background-color: #2ecc71;
-  color: #000000;
+  border-color: rgba(var(--green-rgb), var(--bubble-edge));
+  background-color: rgba(var(--green-rgb), var(--bubble-fill));
+  color: var(--green);
 }
 
 .show-status.ended {
-  background-color: var(--grey-dim);
-  color: #000000;
+  border-color: rgba(var(--grey-dim-rgb), var(--bubble-edge));
+  background-color: rgba(var(--grey-dim-rgb), var(--bubble-fill));
+  color: var(--grey);
 }
 
 /* ---------- Detail view ---------- */
