@@ -104,6 +104,99 @@
     <li class="genre"></li>
   </template>
 
+  <!-- Template for the whole detail view body -->
+  <template id="detail-template">
+    <div class="detail-layout">
+
+      <!-- Left: expanded poster -->
+      <div class="detail-poster-col">
+        <img class="detail-poster" src="" alt="" loading="lazy">
+      </div>
+
+      <!-- Centre: everything else -->
+      <div class="detail-main">
+        <h2 class="detail-name"></h2>
+
+        <!-- Rating + genres, same treatment as the show card -->
+        <div class="detail-headline">
+          <p class="show-rating">
+            <span class="star" aria-hidden="true">&#x2605;</span>
+            <span class="rating-value"></span>
+          </p>
+          <ul class="show-genres"></ul>
+        </div>
+
+        <!-- Facts table -->
+        <ul class="detail-facts">
+          <li>
+            <span class="fact-label">Network</span>
+            <span class="fact-value detail-network"></span>
+          </li>
+          <li>
+            <span class="fact-label">Premiered</span>
+            <span class="fact-value detail-premiered"></span>
+          </li>
+          <li>
+            <span class="fact-label">Ended</span>
+            <span class="fact-value detail-ended"></span>
+          </li>
+          <li>
+            <span class="fact-label">Status</span>
+            <span class="fact-value detail-status"></span>
+          </li>
+          <li>
+            <span class="fact-label">Runtime</span>
+            <span class="fact-value detail-runtime"></span>
+          </li>
+          <li>
+            <span class="fact-label">Schedule</span>
+            <span class="fact-value detail-schedule"></span>
+          </li>
+        </ul>
+
+        <!-- Official site -->
+        <a class="site-button" href="#" target="_blank" rel="noopener noreferrer">
+          Visit official site
+          <span aria-hidden="true">&#x2197;</span>
+        </a>
+
+        <!-- Summary -->
+        <section class="detail-section">
+          <h3 class="section-heading">Summary</h3>
+          <div class="detail-summary"></div>
+        </section>
+
+        <!-- Cast: horizontally scrollable strip -->
+        <section class="detail-section">
+          <h3 class="section-heading">Cast</h3>
+          <ul class="cast-list"></ul>
+        </section>
+
+        <!-- Season / episode counts -->
+        <section class="detail-stats" aria-label="Season and episode counts">
+          <div class="stat">
+            <span class="stat-value stat-seasons"></span>
+            <span class="stat-label">Seasons</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value stat-episodes"></span>
+            <span class="stat-label">Episodes</span>
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </template>
+
+  <!-- Template for one actor in the cast strip -->
+  <template id="cast-template">
+    <li class="cast-member">
+      <img class="cast-photo" src="" alt="" loading="lazy">
+      <span class="cast-name"></span>
+      <span class="cast-character"></span>
+    </li>
+  </template>
+
   <script src="js/app.js" defer></script>
 </body>
 </html>

@@ -290,6 +290,11 @@ img {
   border-color: var(--sky);
 }
 
+.show-card:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+
 .show-poster {
   width: 100%;
   height: 100%;
@@ -441,6 +446,254 @@ img {
   display: none;
 }
 
+/* Poster column | everything else */
+.detail-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 32px;
+  align-items: start;
+  padding: 8px 0 48px;
+}
+
+.detail-poster-col {
+  position: sticky;                        /* poster follows a long summary */
+  top: 24px;
+}
+
+.detail-poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border: 1px solid var(--surface-edge);
+  border-radius: var(--radius-lg);
+  background-color: var(--navy-800);
+}
+
+.detail-main {
+  min-width: 0;                            /* let long text wrap, not overflow */
+}
+
+.detail-name {
+  margin: 0 0 12px;
+  color: var(--white);
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+/* Rating + genres share one row, wrapping on narrow screens */
+.detail-headline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-bottom: 24px;
+}
+
+.detail-headline .show-rating {
+  font-size: 1rem;
+}
+
+/* ---------- Facts list ---------- */
+.detail-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px 24px;
+  margin: 0 0 24px;
+  padding: 20px 22px;
+  border: 1px solid var(--surface-edge);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface);
+  list-style: none;
+}
+
+.detail-facts li {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-size: 0.92rem;
+}
+
+.fact-label {
+  flex: 0 0 90px;
+  color: var(--grey-dim);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.fact-value {
+  color: var(--white);
+}
+
+/* ---------- Official site button ---------- */
+.site-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+  padding: 12px 22px;
+  border-radius: var(--radius-md);
+  background-color: var(--sky);
+  color: #000000;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.18s ease, transform 0.08s ease;
+}
+
+.site-button:hover {
+  background-color: var(--sky-dark);
+}
+
+.site-button:active {
+  transform: translateY(1px);
+}
+
+.site-button:focus-visible {
+  outline: 3px solid var(--white);
+  outline-offset: 2px;
+}
+
+/* A show with no officialSite: js/app.js adds this class */
+.site-button.disabled {
+  pointer-events: none;
+  background-color: var(--surface-edge);
+  color: var(--grey-dim);
+}
+
+/* ---------- Sections ---------- */
+.detail-section {
+  margin-bottom: 32px;
+}
+
+.section-heading {
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(var(--grey-dim-rgb), 0.35);
+  color: var(--white);
+  font-size: 1.1rem;
+}
+
+/* TVMaze returns summaries as HTML (<p>, <b>, <i>) */
+.detail-summary {
+  color: var(--grey);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.detail-summary p {
+  margin: 0 0 12px;
+}
+
+.detail-summary p:last-child {
+  margin-bottom: 0;
+}
+
+.detail-summary b,
+.detail-summary strong {
+  color: var(--white);
+}
+
+/* ---------- Cast strip ---------- */
+.cast-list {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  margin: 0;
+  padding: 4px 0 14px;
+  list-style: none;
+  scroll-snap-type: x proximity;
+  scrollbar-color: var(--surface-edge) transparent;   /* Firefox */
+}
+
+.cast-list::-webkit-scrollbar {
+  height: 8px;
+}
+
+.cast-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cast-list::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background-color: var(--surface-edge);
+}
+
+.cast-list::-webkit-scrollbar-thumb:hover {
+  background-color: var(--grey-dim);
+}
+
+.cast-member {
+  flex: 0 0 112px;                         /* fixed width => the row scrolls */
+  scroll-snap-align: start;
+  text-align: center;
+}
+
+.cast-photo {
+  width: 112px;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 8px;
+  border: 1px solid var(--surface-edge);
+  border-radius: var(--radius-md);
+  background-color: var(--navy-800);
+}
+
+.cast-name {
+  display: block;
+  color: var(--white);
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+.cast-empty {
+  margin: 0;
+  color: var(--grey-dim);
+  font-size: 0.9rem;
+}
+
+.cast-character {
+  display: block;
+  margin-top: 2px;
+  color: var(--grey-dim);
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+
+/* ---------- Season / episode counts ---------- */
+.detail-stats {
+  display: flex;
+  gap: 48px;
+  width: 100%;                             /* spans the content column */
+  padding: 22px 28px;
+  border: 1px solid var(--surface-edge);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface);
+}
+
+.stat-value {
+  display: block;
+  color: var(--sky);
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 2px;
+  color: var(--grey);
+  font-size: 0.85rem;
+}
+
+/* ---------- Tablet: poster moves above the content ---------- */
+@media (max-width: 760px) {
+  .detail-layout    { grid-template-columns: 1fr; gap: 24px; }
+  .detail-poster-col { position: static; max-width: 220px; margin: 0 auto; }
+}
+
 /* ---------- Small screens ---------- */
 @media (max-width: 520px) {
   .site-header  { padding: 32px 0 24px; }
@@ -450,4 +703,7 @@ img {
   .header-rule  { margin-bottom: 20px; }
   .results-list { grid-template-columns: 1fr; }
   .show-card    { grid-template-columns: 90px 1fr; }
+  .detail-name  { font-size: 1.5rem; }
+  .detail-stats { gap: 28px; padding: 18px 20px; }
+  .stat-value   { font-size: 2rem; }
 }
