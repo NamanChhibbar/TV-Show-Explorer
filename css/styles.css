@@ -18,12 +18,14 @@
   --sky-dark: #63b8dd;   /* hover state                */
   --blue:     #3d8bfd;   /* focus highlight            */
   --green:    #2ecc71;   /* "Running" status           */
+  --yellow:   #ffc857;   /* "To Be Determined" status   */
 
   --danger:   #ff7a7a;
 
   /* Bare RGB channels, so the bubbles below can tint with rgba() */
   --sky-rgb:      135, 206, 235;
   --green-rgb:     46, 204, 113;
+  --yellow-rgb:   255, 200,  87;
   --grey-dim-rgb: 111, 130, 160;
 
   /* Shared glossy-bubble recipe: dark tinted fill, bright text */
@@ -328,7 +330,7 @@ img {
 }
 
 .show-rating .star {
-  color: #ffc857;
+  color: var(--yellow);
 }
 
 /* Genre bubbles */
@@ -398,6 +400,12 @@ img {
   border-color: rgba(var(--green-rgb), var(--bubble-edge));
   background-color: rgba(var(--green-rgb), var(--bubble-fill));
   color: var(--green);
+}
+
+.show-status.tbd {
+  border-color: rgba(var(--yellow-rgb), var(--bubble-edge));
+  background-color: rgba(var(--yellow-rgb), var(--bubble-fill));
+  color: var(--yellow);
 }
 
 .show-status.ended {

@@ -31,6 +31,15 @@ const PLACEHOLDER_PHOTO =
     '</svg>'
   );
 
+// TVMaze reports four statuses; each gets its own bubble colour.
+// Anything unrecognised falls back to the grey "ended" styling.
+const STATUS_CLASSES = {
+  'Running':          'running',
+  'To Be Determined': 'tbd',
+  'In Development':   'tbd',
+  'Ended':            'ended',
+};
+
 /* ---------- Element references ---------- */
 
 const elements = {
@@ -279,11 +288,10 @@ function buildShowCard(show) {
   fragment.querySelector('.show-network').textContent = network || 'Unknown network';
   fragment.querySelector('.show-date').textContent = year || 'N/A';
 
-  // Status bubble: green while running, grey once ended
+  // Status bubble: green running, yellow undecided, grey ended
   const statusEl = fragment.querySelector('.show-status');
-  const isRunning = show.status === 'Running';
   statusEl.textContent = show.status?.toUpperCase() || 'UNKNOWN';
-  statusEl.classList.add(isRunning ? 'running' : 'ended');
+  statusEl.classList.add(STATUS_CLASSES[show.status] || 'ended');
 
   return fragment;
 }
