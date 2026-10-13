@@ -1,0 +1,7 @@
+# Trims the build context uploaded to Cloud Build. The Dockerfile already
+# copies files explicitly, so this is about upload size, not safety.
+.git
+.gitignore
+materials/
+submission/
+process_log.txt
